@@ -22,5 +22,4 @@ function greeting(who){
 console.log(greeting.call(obj, 'anonim'));
 console.log(greeting.call(obj,'user'));
 console.log(greeting.call(obj,'admin'));
-
 console.log('=====================');
