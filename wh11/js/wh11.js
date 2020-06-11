@@ -17,22 +17,8 @@ console.log('=====================');
 
 function SuperMath() {
     this.check = function (obj) {
-        if (confirm('расчитать?')){
-
-            if (obj.znak === '+'){
-                this.sum(obj);
-            }else if(obj.znak === '-'){
-                this.diff(obj);
-            }else if(obj.znak === '/'){
-                this.div(obj);
-            }else if(obj.znak === '*'){
-                this.mul(obj);
-            }else if(obj.znak === '%'){
-                this.rem(obj);
-            }else{
-                alert('не корректное значение znak');
-            }
-
+        if (confirm('произвести действие znak c Х и У?')){
+            this.toDo(obj)
         }else{
             this.input()
         }
@@ -50,7 +36,22 @@ var obj = {
     y: 3,
     znak: '+'
 };
+SuperMath.prototype.toDo = function(obj){
+    if (obj.znak === '+'){
+        this.sum(obj);
+    }else if(obj.znak === '-'){
+        this.diff(obj);
+    }else if(obj.znak === '/'){
+        this.div(obj);
+    }else if(obj.znak === '*'){
+        this.mul(obj);
+    }else if(obj.znak === '%'){
+        this.rem(obj);
+    }else{
+        alert('не корректное значение znak');
+    }
 
+};
 SuperMath.prototype.sum = function (obj){
     console.log('x =', obj.x, ', y =', obj.y,);
     console.log('x + y =', obj.x + obj.y);
