@@ -13,10 +13,12 @@ window.onload = function () {
     var myText = document.querySelector('textarea');
 
     setInterval( function () {
+        var values = '';
 
         for(i = 0; i < inputs.length; i++){
-            myText.value += inputs[i].value + ', ';
+            values += inputs[i].value + ', ';
         }
+        myText.value = values;
     }, 3000);
 };
 console.log('=====================');
