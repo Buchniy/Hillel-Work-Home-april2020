@@ -19,24 +19,59 @@ options.min - options.max. Массив сохраняется в екземпл
 "left", "right", "top", "bottom", и маркер сдвинется в указанную сторону на 1 шаг.
  */
 console.log('======================');
-function SuperArray(n, m, { min: min,  max: max }) {
+
+function SuperArray(n, m, options) {
 
     var arr = new Array(n);
+
     for (var i = 0; i < n; i++) {
-        arr[i] = new Array(m)
+        arr[i] = new Array(m);
         for (var j = 0; j < arr[i].length; j++) {
-            arr[i][j] = Math.ceil(Math.random() * (max - min) + min);
+            arr[i][j] = Math.ceil(Math.random() * (options.max - options.min) + options.min);
         }
     }
-    return arr;
+    console.log(arr, 'arr');
+
+    this.clear = function (direction, k) {
+
+        if(direction === 'row'){
+            for (var j = 0, rowlength = arr[arr.length - 1].length; j < rowlength; j++){
+                arr[k][j] = 0;
+            }
+            return arr;
+        }if(direction === 'column'){
+            for (var i = 0; i < n; i++){
+                arr[i][k] = 0;
+            }
+            return arr;
+
+        }
+    };
+    
+    this.setMarker = function (marker) {
+       arr[marker.x][marker.y] += '&';
+        return arr;
+        };
+
+
 }
+
+SuperArray.prototype.render = function (separator, m) {
+    var separ = new Array(m);
+    for(var i = 0; i < m; i++){
+        separ[i] = separator;
+    }
+    return console.log(separ.join(''), '<= separator');
+};
+
+
+
 var mass = new SuperArray(5, 10, {min: 10, max: 55 } );
-console.log(mass, 'mass');
+console.log( mass.setMarker({x: 0, y: 0 }));
+console.log( mass.setMarker({x: 0, y: 1 }));
+mass.render('*', 50);
 
-
-
-
-
-
+mass.clear('row', 2);
+mass.clear('column', 3);
 
 console.log('======================');
