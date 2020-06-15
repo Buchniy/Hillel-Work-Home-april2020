@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WorkHome14</title>
+</head>
+<body>
+<style>
+    .total{
+        width: 102px;
+        height: 108px;
+        border: 1px solid black;
+    }
+    .value{
+        background: green;
+    }
+    .commis{
+        background: red;
+    }
+    .total{
+        transform: rotate(180deg);
+    }
+</style>
+<br>
+<br>
+<br>
+<form >
+<input type="range" value="0" min="0" max="100" id="rng">
+<input type="number" value="0" min="0" max="100" id="nmb">
+</form>
+<br>
+<br>
+<br>
+<div class="total">
+    <div class="value"></div>
+    <div class="commis"></div>
+</div>
+<script src="js/wh14.js"></script>
+</body>
+</html>
