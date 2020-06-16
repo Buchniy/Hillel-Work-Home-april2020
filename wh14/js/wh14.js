@@ -12,42 +12,48 @@
 Красный блок отображает количество комиссии. Например Значение выбора 100,
 комиссия будет 8%. Результирующая сумма: 108. Высота красного блока - 8px
  */
-console.log('====================================');
+console.log('================WH14====================');
+
 window.onload = function () {
 
-     var rng = document.querySelector('#rng');
-     var nmb = document.querySelector('#nmb');
-     var val = document.querySelector('.value');
-     var commis = document.querySelector('.commis');
+var rng = document.querySelector('#rng');
+var nmb = document.querySelector('#nmb');
+var diagram = document.querySelector('.value');
+var commis = document.querySelector('.commis');
 
-        nmb.oninput = function(){
-                rng.value = nmb.value;
-                valueBox();
-                commisBox();
-        };
-        rng.oninput = function(){
-                console.log(rng.value);
-                nmb.value = rng.value;
-                valueBox();
-                commisBox();
-        };
-        function  valueBox() {
-               if(rng.oninput){
-                       val.style.height = rng.value +'px'
-               }else if(nmb.oninput){
-                       val.style.height = nmb.value +'px';
-               }
-        }
-        function commisBox() {
-                var valueComis = rng.value || nmb.value;
-                if(valueComis < 20 ){
-                        commis.style.height = (rng.value * 2 / 100) + 'px';
-                }else if(valueComis < 50){
-                        commis.style.height = (rng.value * 4 / 100) + 'px';
-                }else if(valueComis < 75){
-                        commis.style.height = (rng.value * 6 / 100) + 'px';
-                }else{
-                        commis.style.height = (rng.value * 8 / 100)  + 'px';
-                }
+function calculation() {
+
+    var calculator = {
+        onNumber: function () {
+            rng.value = nmb.value;
+            this.onDiagram(rng.value);
+            this.onCommis(rng.value);
+        },
+        onRange: function () {
+            nmb.value = rng.value;
+            this.onDiagram(nmb.value);
+            this.onCommis(nmb.value);
+        },
+        onDiagram: function(inp) {
+            diagram.style.height = inp + 'px';
+        },
+        onCommis: function(x) {
+            var comm = commis.style;
+            if (x < 20) {
+                comm.height = (x * 2 / 100) + 'px';
+            } else if (x < 50) {
+                comm.height = (x * 4 / 100) + 'px';
+            } else if (x < 75) {
+                comm.height = (x * 6 / 100) + 'px';
+            } else {
+                comm.height = (x * 8 / 100) + 'px';
+            }
         }
 };
+    nmb.addEventListener('input', calculator.onNumber.bind(calculator));
+    rng.addEventListener('input', calculator.onRange.bind(calculator));
+}
+    calculation();
+};
+
+
