@@ -8,11 +8,7 @@
  */
 console.log('=================WH16================');
 window.onload = function() {
-
-
-
-    var button = document.querySelectorAll('.button');
-    var counter = document.querySelector('.counter');
+    var buttons = document.querySelectorAll('.button');
 
     var store = {
         setInStore: function(key, value) {
@@ -23,24 +19,26 @@ window.onload = function() {
         }
     };
 
-    counter.innerHTML = store.getFromStore('counter') || 0;
+    for(var i = 0; i < buttons.length; i++) {
+        getParent(buttons[i],'.block')
+            .querySelector('.counter').innerHTML = store.getFromStore('counter-' + i);
 
-    var click = (function(event) {
+        buttons[i].addEventListener('click', click.bind(buttons[i], i));
+
+    }
+
+
+    function click(i) {
+        var block  = getParent(this,'.block');
+        var counter = block.querySelector('.counter');
         var counterValue = ++counter.innerHTML;
 
-        store.setInStore('counter', counterValue);
-
-    }).bind(null , counter);
-
-
-    // button.addEventListener('click', click);
+        store.setInStore('counter-' + i, counterValue); // counter - 2
+    }
 
 
-for(var i = 0; i < button.length; i++){
-    button[i];
-}
+    function getParent(node, parentSelector) {
+        return node.closest(parentSelector);
+    }
 
-
-    button[1].addEventListener('click', click);
-    button[0].addEventListener('click', click);
 };
