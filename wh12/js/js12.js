@@ -23,6 +23,7 @@ console.log('======================');
 function SuperArray(n, m, options) {
 
     var arr = new Array(n);
+    var _value = {};
 
     for (var i = 0; i < n; i++) {
         arr[i] = new Array(m);
@@ -47,14 +48,37 @@ function SuperArray(n, m, options) {
 
         }
     };
-    
-    this.setMarker = function (marker) {
-       arr[marker.x][marker.y] += '&';
-        return arr;
-        };
 
+    this.setMarker = function (marker) {
+
+        if(marker.x <= n && marker.y <= m && 0 <= marker.x && 0 <= marker.y){
+            _value = marker;
+            console.log(_value, 'error');
+            arr[_value.x][_value.y] += '&';
+
+        }else{
+            alert('Не корректные значения');
+            return arr;
+        }
+    };
+
+    this.getMarker = function() {
+        return arr[_value.x][_value.y];
+    };
+
+    this.clearMarker = function () {
+        arr[_value.x][_value.y] = parseInt(this.getMarker());
+    };
+
+    this.goTo = function (marker) {
+        this.clearMarker();
+        this.setMarker(marker);
+    }
 
 }
+
+
+
 
 SuperArray.prototype.render = function (separator, m) {
     var separ = new Array(m);
@@ -67,11 +91,11 @@ SuperArray.prototype.render = function (separator, m) {
 
 
 var mass = new SuperArray(5, 10, {min: 10, max: 55 } );
-console.log( mass.setMarker({x: 0, y: 0 }));
-console.log( mass.setMarker({x: 0, y: 1 }));
+// console.log( mass.setMarker({x: 0, y: 0 }));
+mass.setMarker({x: 0, y: 8 });
 mass.render('*', 50);
 
 mass.clear('row', 2);
-mass.clear('column', 3);
 
+mass.goTo({x: 1, y: 3 });
 console.log('======================');
