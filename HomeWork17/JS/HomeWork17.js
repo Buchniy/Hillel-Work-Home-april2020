@@ -3,7 +3,7 @@
 
 Создать кнопку setCounter(), который запрашивает id (каком блоку изменить счетчик)
  */
-console.log('=================WH16================');
+console.log('=================WH17================');
 window.onload = function() {
     var buttons = document.querySelectorAll('.button');
     var buttonClear = document.querySelector('.button1');
