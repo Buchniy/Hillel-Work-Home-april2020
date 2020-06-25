@@ -10,7 +10,7 @@
 console.log('=================WH16================');
 window.onload = function() {
     var buttons = document.querySelectorAll('.button');
-    var buttotClear = document.querySelector('.button1');
+    var buttonClear = document.querySelector('.button1');
 
     var store = {
         setInStore: function(key, value) {
@@ -19,19 +19,18 @@ window.onload = function() {
         getFromStore: function(key) {
             return localStorage.getItem(key);
         }
-        // clearStorage: function () {
-        //     localStorage.clear();
-        // }
+
     };
-    buttotClear.addEventListener('click', localStorage.clear());
+
     for(var i = 0; i < buttons.length; i++) {
         getParent(buttons[i],'.block')
             .querySelector('.counter').innerHTML = store.getFromStore('counter-' + i);
 
         buttons[i].addEventListener('click', click.bind(buttons[i], i));
-
+        buttonClear.addEventListener('click', clearKey.bind(null, i));
     }
-    // buttotClear.addEventListener('click', localStorage.clearStorage());
+
+
 
     function click(i) {
         var block  = getParent(this,'.block');
@@ -44,6 +43,11 @@ window.onload = function() {
 
     function getParent(node, parentSelector) {
         return node.closest(parentSelector);
+    }
+
+    function clearKey(i) {
+        store.setInStore('counter-' + i, 0);
+
     }
 
 
