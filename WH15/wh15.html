@@ -7,7 +7,8 @@
         html, body {
             width: 100%;
             height: 100%;
-
+            margin: 0;
+            padding: 0;
         }
         .right-click-area {
             width: 100%;
@@ -24,9 +25,7 @@
             padding: 0;
             position: fixed;
             list-style: none;
-            background: white;
-            border: 2px solid lightgray;
-            border-radius: 2px;
+            border: 1px solid lightgray;
             display: none;
             color: black;
         }
@@ -35,17 +34,17 @@
 
         }
         .right-click-menu li {
-            width: 100%;
+            width: 300px;
             padding: 10px;
             box-sizing: border-box;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 15px;
 
-            height: 300 px;
+
         }
         .right-click-menu li:hover {
             background: lightgray;
-            transition: 0.2s;
+            transition: 0.1s;
         }
     </style>
 </head>
@@ -53,6 +52,10 @@
 <div class="right-click-area">
 
     <ul class="right-click-menu">
+        <li id="l1">Первая строчка</li>
+        <li id="l2">Вторая строчка</li>
+        <li id="l3">Третья строчка</li>
+        <li id="l4">Четвертая строчка</li>
         <li id="l1">Первая строчка</li>
         <li id="l2">Вторая строчка</li>
         <li id="l3">Третья строчка</li>

@@ -1,7 +1,4 @@
 window.onload = function () {
-
-
-
     const menuArea = document.querySelector(".right-click-area");
     const menu = document.querySelector(".right-click-menu");
 
