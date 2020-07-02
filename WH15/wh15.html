@@ -10,17 +10,13 @@
             margin: 0;
             padding: 0;
         }
-        .right-click-area {
-            width: 100%;
-            height: 100%;
-            color: white;
-            margin: auto;
-            display: flex;
-            position: relative;
+        ul {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
         }
 
-        .right-click-menu {
-
+        .contextMenu{
             margin: 0;
             padding: 0;
             position: fixed;
@@ -29,39 +25,34 @@
             display: none;
             color: black;
         }
-        .right-click-menu.active {
-            display: block;
 
+        .contextMenu.active {
+            display: block;
+            width: 250px;
+            height: auto;
+            border: 1px solid lightgray;
+            color: black;
         }
-        .right-click-menu li {
-            width: 300px;
+        li:nth-child(2){
+            border-bottom: 1px solid lightgray;
+        }
+        .contextMenu li{
+            width: 250px;
             padding: 10px;
             box-sizing: border-box;
             cursor: pointer;
             font-size: 15px;
-
-
         }
-        .right-click-menu li:hover {
+        .contextMenu li:hover {
             background: lightgray;
+
             transition: 0.1s;
         }
     </style>
 </head>
 <body>
-<div class="right-click-area">
-
-    <ul class="right-click-menu">
-        <li id="l1">Первая строчка</li>
-        <li id="l2">Вторая строчка</li>
-        <li id="l3">Третья строчка</li>
-        <li id="l4">Четвертая строчка</li>
-        <li id="l1">Первая строчка</li>
-        <li id="l2">Вторая строчка</li>
-        <li id="l3">Третья строчка</li>
-        <li id="l4">Четвертая строчка</li>
-    </ul>
-</div>
+<div class="container"></div>
+<div class="contextMenu"></div>
 <script src="js/workHome15.js"></script>
 </body>
 </html>
