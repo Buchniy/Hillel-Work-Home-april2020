@@ -8,8 +8,6 @@
 на пункт меню из задания №1 ( принцип работы как делали на практике)
  */
 
-
-
 console.log('=====================');
 window.onload = function () {
 
@@ -17,7 +15,7 @@ window.onload = function () {
         const menuArea = document.querySelector('body');
         var newMenu = document.querySelector('.contextMenu');
 
-        menuArea.addEventListener("contextmenu",event => {
+        menuArea.addEventListener("contextmenu", event => {
             event.preventDefault();
             newMenu.style.top = `${event.clientY}px`;
             newMenu.style.left = `${event.clientX}px`;
@@ -53,113 +51,88 @@ window.onload = function () {
                 {
                     title: 'Четвертая строчка Edit',
                     handler: 'ActionEdit'
+                },
+                {
+                    title: 'Пятая строчка Print',
+                    handler: 'ActionPrint'
                 }
             ]
         };
 
         var actions = {
-            ActionAdd: function() {
+            ActionAdd: function () {
                 console.log('add');
             },
-            ActionSaveAs: function() {
+            ActionSaveAs: function () {
                 console.log('save')
             },
-            ActionExit: function() {
+            ActionExit: function () {
                 console.log('exit');
             },
-            ActionEdit: function() {
+            ActionEdit: function () {
                 console.log('Edit');
+            },
+            ActionPrint: function () {
+                console.log('Print');
             }
         };
-        function MenuComponent() {
 
+        function MenuComponent(data, actions) {
+            this.data = data;
+            this.actions = actions;
+            this.ul = null;
         }
-        //     MenuComponent.prototype.makeMenuContainer = function() {
-        //     var ul = document.createElement('ul');
-        //     ul.classList.add(data.type);
-        //
-        //     return ul;
-        // };
+
         MenuComponent.prototype.makeMenuItems = function () {
-            var ul = document.createElement('ul');
-            for(var i = 0; i < data.items.length; i++){
+            var fragment = document.createDocumentFragment();
+            var items = this.data.items;
+
+            for (var i = 0; i < items.length; i++) {
                 var li = document.createElement('li');
-                var item = data.items[i];
+                var item = items[i];
+
                 li.innerText = item.title;
                 li.addEventListener('click', actions[item.handler]);
-                ul.append(li);
-
+                fragment.append(li);
             }
 
-            newMenu.append(ul);
+            return fragment;
         };
 
+        MenuComponent.prototype.makeMenuContainer = function () {
+            var ul = document.createElement('ul');
 
-        var menu = new MenuComponent();
-        menu.makeMenuItems();
+            return ul;
+        };
+
+        MenuComponent.prototype.makeMenu = function () {
+            var ul = this.makeMenuContainer();
+            var fragment = this.makeMenuItems();
+            ul.append(fragment);
+            this.ul = ul;
+
+            return this;
+        };
+
+        MenuComponent.prototype.render = function (selector) {
+            var parent = document.querySelector(selector);
+
+            if (this.ul && parent) {
+                document.querySelector(selector).append(this.ul);
+            }
+
+            return this;
+        };
+
+        var menu = new MenuComponent(data, actions);
+
+        menu
+            .makeMenu()
+            .render('.contextMenu');
+
     }
 
     contextMenu();
 };
 
-//d
-//     function MenuComponent(data, actions) {
-//         this.data = data;
-//         this.actions = actions;
-//         this.ul = null;
-//     }
-// //
-//     MenuComponent.prototype.makeMenuItems = function() {
-//         var fragment = document.createDocumentFragment();
-//         var items = this.data.items;
-//
-//         for(var i = 0; i < items.length; i++) {
-//             var li = document.createElement('li');
-//             var item = items[i];
-//             li.classList.add('menu-item');
-//             li.innerText = item.title;
-//             li.addEventListener('click', actions[item.handler]);
-//             fragment.append(li);
-//         }
-//
-//         return fragment;
-//     };
-// //
-//     MenuComponent.prototype.makeMenuContainer = function() {
-//         var ul = document.createElement('ul');
-//         ul.classList.add(data.type);
-//
-//         return ul;
-//     };
-//     //
-//     MenuComponent.prototype.makeMenu = function() {
-//         var ul = this.makeMenuContainer();
-//         var fragment = this.makeMenuItems();
-//         ul.append(fragment);
-//         this.ul = ul;
-//
-//         return this;
-//     };
-//     //
-//     MenuComponent.prototype.render = function(selector) {
-//         var parent = document.querySelector(selector);
-//
-//         if (this.ul && parent) {
-//             document.querySelector(selector).append(this.ul);
-//         }
-//
-//         return this;
-//     };
-//
-//     var menu = new MenuComponent(data, actions);
-//
-//     menu
-//         .makeMenu()
-//         .render('.container');
-
-//
-// }
-//
-//
-// window.onload = menuModule;
 
