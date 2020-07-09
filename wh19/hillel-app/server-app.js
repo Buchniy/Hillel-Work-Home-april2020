@@ -22,7 +22,7 @@ app.listen(port, function () {
     console.log(`Example app listening on port http://localhost:${port}/`);
 });
 // http://localhost:3003/
-///////////////////--------------------------///////////////////////
+////--------------------------/////
 
 fs.readFile('./users.json', 'utf8', (err, jsonString) => {
     if (err) {
