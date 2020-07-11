@@ -27,26 +27,49 @@ app.listen(port, function () {
 
 
 
+// app.post('/', function(req, res) {
+//     console.log('hello path / -->> post./users.json', req.body);
+//     const {login , secretKey} = req.body;
+//     const data2 = req.body;
+//     res.send(data2);
+// });
+//
+
+// fs.readFile('./users.json', 'utf8', (err, jsonString) => {
+//     if (err) {
+//         console.log("File read failed:", err);
+//         return
+//     }
+//     let fileData = jsonString;
+//
+//     console.log('File data:', fileData);
+//
+// fileData.order_count += 1;
+// fs.writeFile('./users.json', JSON.stringify(jsonString), (err) => {
+//     if (err) console.log('Error writing file:', err)
+// });
+// });
+
 app.post('/', function(req, res) {
     console.log('hello path / -->> post./users.json', req.body);
-    const {login , secretKey} = req.body;
-    const data2 = req.body;
-    res.send(data2);
+    // const {id , name} = req.body;
+    // const data2 = req.body;
+    // res.send(JSON.stringify(req.body));
+
+    fs.readFile('./users.json', 'utf8', (err, data2) => {
+        if (err) {
+            console.log("File read failed:", err);
+            return
+        }
+
+        res.send(JSON.stringify(req.body));
+        console.log('File data:', req.body);
+
+        req.body.order_count += 1;
+        fs.writeFile('./users.json', JSON.stringify(req.body), (err) => {
+            if (err) console.log('Error writing file:', err)
+        });
+    });
 });
 
-
-fs.readFile('./users.json', 'utf8', (err, jsonString) => {
-    if (err) {
-        console.log("File read failed:", err);
-        return
-    }
-    let fileData = jsonString;
-
-    console.log('File data:', fileData);
-
-fileData.order_count += 1;
-fs.writeFile('./users.json', JSON.stringify(jsonString), (err) => {
-    if (err) console.log('Error writing file:', err)
-});
-});
 // node server-app
