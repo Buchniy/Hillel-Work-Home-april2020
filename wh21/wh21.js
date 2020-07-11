@@ -1,19 +1,16 @@
-function pahtSelection() {
-    // return true
-    return false       //if true -> resolve, false -> reject
-}
+let pathSelection = confirm('выбери направление: resolve - ok // reject - no');
+
 const promise = new Promise((resolve, reject) =>{
 
-    if(pahtSelection()){
-        console.log('pahtSelection --> resolve');
+    if(pathSelection){
+        console.log('pathSelection --> resolve');
         resolve();
     }else{
-        console.log('pahtSelection --> reject');
+        console.log('pathSelection --> reject');
         reject();
     }
     console.log('0');
 });
-
 promise
     .then(() => {
             console.log('1');
@@ -37,7 +34,7 @@ promise
             console.log('6');
             return new Promise((resolve, reject) =>{
 
-                if(pahtSelection()){
+                if(pathSelection){
                     reject();
                 }else{
                     resolve();
