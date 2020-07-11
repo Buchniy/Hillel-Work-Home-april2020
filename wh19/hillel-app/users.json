@@ -1,6 +1,1 @@
-[
-  {"name": "Valera", "id": "1"},
-  {"name": "Petro", "id": "2"},
-  {"name": "KAte", "id": "3"},
-  {"name": "Alice", "id": "4"}
-]
+"[\r\n  {\"login\": \"Valera\", \"password\": \"1\", \"secretKey\": \"@fg4\"},\r\n  {\"login\": \"Lera\", \"password\": \"45\", \"secretKey\": \"@4rg4\"}\r\n]"

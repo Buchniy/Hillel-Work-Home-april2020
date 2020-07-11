@@ -24,39 +24,29 @@ app.listen(port, function () {
 // http://localhost:3003/
 ////--------------------------/////
 
+
+
+
+app.post('/', function(req, res) {
+    console.log('hello path / -->> post./users.json', req.body);
+    const {login , secretKey} = req.body;
+    const data2 = req.body;
+    res.send(data2);
+});
+
+
 fs.readFile('./users.json', 'utf8', (err, jsonString) => {
     if (err) {
         console.log("File read failed:", err);
         return
     }
-    console.log('File data:', jsonString)
+    let fileData = jsonString;
+
+    console.log('File data:', fileData);
+
+fileData.order_count += 1;
+fs.writeFile('./users.json', JSON.stringify(jsonString), (err) => {
+    if (err) console.log('Error writing file:', err)
 });
-const data = [
-    123 , 123, 123, 123
-];
-
-app.get('/', function(req, res) {
-    console.log('hello path /');
-
-    res.send(JSON.stringify(data));
-});
-
-
-
-app.get('/users', function(req, res) {
-    console.log('hello path /users');
-
-    res.send(JSON.stringify(data));
-});
-
-
-app.post('/users.json', function(req, res) {
-    console.log('hello path / -->> post./users.json', req.body);
-    const {id , name} = req.body;
-    const data2 = req.body;
-
-    console.log(id, name, 'from client');
-
-    res.send(JSON.stringify(data2));
 });
 // node server-app
