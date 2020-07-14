@@ -22,7 +22,6 @@ app.listen(port, function () {
     console.log(`Example app listening on port http://localhost:${port}/`);
 });
 // http://localhost:3003/
-
 app.post('/', function (req, res) {
     let {login, secretKey} = req.body;
     let data = req.body;
