@@ -11,6 +11,7 @@ function sendAjax({url, method, success, data}) {
 
     xhttp.open(method, url);
     xhttp.send(JSON.stringify(data));
+    console.log(JSON.stringify(data), 'data');
 }
 
 const forms = document.querySelectorAll('form');
@@ -26,14 +27,15 @@ function click(event) {
     const self = this;
 
 
-    if (target.tagName.toLowerCase() == 'button') {
+    if (target.tagName.toLowerCase() === 'button') {
         const requestPayload = prepareForm(this);
 
         sendAjax({
-            url: `http://localhost:3005/user-auth`,
+            url: `http://localhost:3005/`,
             method: 'POST',
             data: requestPayload,
             success(data) {
+                console.log('success', data);
                 nextStep(self.dataset.id);
             }
         });
@@ -71,3 +73,4 @@ function prepareForm(form) {
 
     return requestPayload;
 }
+
