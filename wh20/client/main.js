@@ -5,6 +5,7 @@ function sendAjax({url, method, success, data}) {
     xhttp.addEventListener('load', function({target}){
         const response = target.response;
         success(response);
+
     });
 
     xhttp.open(method, url);
