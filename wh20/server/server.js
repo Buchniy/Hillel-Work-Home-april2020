@@ -21,37 +21,33 @@ app.listen(port, function () { // говорим на каком порту за
     console.log(`Example app listening on port http://localhost:${port}/`);
 });
 
-app.post('/', function (req, res){
-    let {login, password} =JSON.parse(req.body);
-
-
+app.post('/', function (req, res) {
+    let {login, password} = JSON.parse(req.body);
 
     fs.readFile('./users.json', 'utf8', (err, dataJson) => {
-
         let data2 = JSON.parse(dataJson);
+        console.log('users.json', data2);
 
+        let currentUser = data2.some(data2 => data2.login === login && data2.password === password);
 
-
-        console.log(data2, 'data2');
-
-        // let currentUser = data2.some(data2 => data2.login === login && data2.password === password);
-        let currentUser = data2.filter(data2 => data2.login === login && data2.password === password)
-                    .map(item =>console.log(item.id, 'id'));
-
-
-        // });
-        // console.log(id, 'data2.login');
-
-        // console.log(currentUser, 'currentUser');
-
-        if(currentUser) {
-
-
-            res.status(200).send(`id`);
-        }else {
-
+        if (currentUser) {
+            let currentId = data2.filter(data2 => data2.login === login && data2.password === password)
+                .map(item => item.id);
+            console.log('currentId', currentId);
+            res.status(200).send(`${currentId}`);
+        } else {
             res.status(401).send('Not found');
         }
 
     });
+});
+
+app.post('/id/', function (req, res) {
+    let urlToJson = 'goods/' + `${JSON.parse(req.body)}` + '.json';
+    fs.readFile(urlToJson, 'utf8', (err, goodsJson) => {
+        // fs.readFile('goods/' + `${JSON.parse(req.body)}` + '.json', 'utf8', (err, goodsJson) => {
+        let userGood = goodsJson;
+        console.log('userGood', userGood);
+        res.send(userGood);
+    })
 });
