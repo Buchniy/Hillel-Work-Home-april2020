@@ -45,9 +45,9 @@ app.post('/', function (req, res) {
 app.post('/id/', function (req, res) {
     let urlToJson = 'goods/' + `${JSON.parse(req.body)}` + '.json';
     fs.readFile(urlToJson, 'utf8', (err, goodsJson) => {
-        // fs.readFile('goods/' + `${JSON.parse(req.body)}` + '.json', 'utf8', (err, goodsJson) => {
-        let userGood = goodsJson;
-        console.log('userGood', userGood);
-        res.send(userGood);
+
+        let userGoods = goodsJson;
+        console.log('userGoods', userGoods);
+        res.send(userGoods);
     })
 });

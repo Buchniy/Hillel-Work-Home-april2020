@@ -30,8 +30,8 @@ function click(event) {
                     url: `http://localhost:3005/id/`,
                     method: 'POST',
                     data: id,
-                    success(userGood) {
-                        console.log(userGood);
+                    success(userGoods) {
+                        console.log(userGoods);
                     }
                 });
             }
