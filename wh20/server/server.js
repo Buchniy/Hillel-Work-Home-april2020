@@ -21,33 +21,37 @@ app.listen(port, function () { // говорим на каком порту за
     console.log(`Example app listening on port http://localhost:${port}/`);
 });
 
-app.post('/', function (req, res) {
-    let {login, password} = req.body;
-    let data = req.body;
-    conslole.log(req.body, 'req.body');
+app.post('/', function (req, res){
+    let {login, password} =JSON.parse(req.body);
+
+
 
     fs.readFile('./users.json', 'utf8', (err, dataJson) => {
-        if (err) {
-            console.log("File read failed:", err);
-            return
-        }
+
         let data2 = JSON.parse(dataJson);
+
+
+
         console.log(data2, 'data2');
-        let currentUser = data2.some(data2 => data2.login === login && data2.password === password);
 
-        if (currentUser) {
-            let message = `Пользователь "${login}" с таким secretKey уже существует`;
-            res.status(301).send(message);
-        } else {
-            data2.push(data);
-            message = `Пользователь "${login}" успешно добавлен`;
-            res.status(200).send(message);
+        // let currentUser = data2.some(data2 => data2.login === login && data2.password === password);
+        let currentUser = data2.filter(data2 => data2.login === login && data2.password === password)
+                    .map(item =>console.log(item.id, 'id'));
+
+
+        // });
+        // console.log(id, 'data2.login');
+
+        // console.log(currentUser, 'currentUser');
+
+        if(currentUser) {
+
+
+            res.status(200).send(`id`);
+        }else {
+
+            res.status(401).send('Not found');
         }
-
-        fs.writeFile('./users.json', JSON.stringify(data2), (err) => {
-
-            if (err) console.log('Error writing file:', err)
-        });
 
     });
 });

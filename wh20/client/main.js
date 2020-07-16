@@ -2,62 +2,49 @@ console.log('hello');
 
 function sendAjax({url, method, success, data}) {
     const xhttp = new XMLHttpRequest();
-
+    // console.log(data, 'data');
     xhttp.addEventListener('load', function({target}){
-        const response = JSON.parse(target.response);
+        const response = target.response;
         success(response);
+        // res.send('okkkkkkkkkkkkkk');
     });
 
 
     xhttp.open(method, url);
-    xhttp.send(JSON.stringify(data));
-    console.log(JSON.stringify(data), 'data');
+    xhttp.send(JSON.stringify(data))
 }
 
-const forms = document.querySelectorAll('form');
+const form = document.querySelector('form');
 
-forms.forEach(form => {
-    form.addEventListener('click', click);
-});
+form.addEventListener('click', click);
+
+
 
 
 function click(event) {
     event.preventDefault();
     const target = event.target;
-    const self = this;
+
 
 
     if (target.tagName.toLowerCase() === 'button') {
         const requestPayload = prepareForm(this);
-
-        sendAjax({
+         sendAjax({
             url: `http://localhost:3005/`,
             method: 'POST',
             data: requestPayload,
             success(data) {
-                console.log('success', data);
-                nextStep(self.dataset.id);
+                console.log('ответ сервера', data);
+
             }
+
         });
+
     }
 
 }
 
-function nextStep(id) {
-    const currentActiveFormId = id - 1;
-    const isNextFormExist = forms[currentActiveFormId + 1];
-    let idNextForm = '';
 
-    if (isNextFormExist) {
-        idNextForm = currentActiveFormId + 1;
-    } else {
-        idNextForm = 0;
-    }
-
-    forms[currentActiveFormId].classList.remove('center');
-    forms[idNextForm].classList.add('center');
-
-}
 
 
 function prepareForm(form) {

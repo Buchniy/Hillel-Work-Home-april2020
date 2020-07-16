@@ -3,6 +3,14 @@
     "login": "admin",
     "password": "admin",
     "id": 1
-  }
-
+  },
+  {
+    "login": "Alex",
+    "password": "Alex",
+    "id": 2
+  },  {
+  "login": "Pety",
+  "password": "Pety",
+  "id": 3
+}
 ]
