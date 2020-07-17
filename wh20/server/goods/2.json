@@ -1,10 +1,14 @@
 [
   {
-    "apple": "5$",
-    "strawberry": "12$",
+  "name": "apple", "price": "10$"
   },
   {
-    "cherry": "5$",
-    "watermelon": "12$"
+    "name": "strawberry", "price": "23$"
+  },
+  {
+    "name": "cherry", "price": "6$"
+  },
+  {
+    "name": "watermelon", "price": "13$"
   }
 ]

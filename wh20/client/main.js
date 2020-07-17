@@ -33,6 +33,16 @@ function click(event) {
                     data: id,
                     success(userGoods) {
                         console.log(userGoods);
+                        // let box =  document.querySelector('.box');
+                        // box.innerHTML = userGoods;
+                        let goods = userGoods;
+                        console.log(goods, 'goods');
+////////////////////////////////
+//                         const markup = `<div class="goods">${goods.name}, ${goods.price}</div>`;
+//
+//                         console.log(markup, 'markup');
+//                         document.body.innerHTML = markup;
+   ////////////////////////////////
                     }
                 });
             }
@@ -53,4 +63,6 @@ function prepareForm(form) {
 
     return requestPayload;
 }
+
+
 

@@ -10,11 +10,12 @@ form {
     width: 300px;
 
 }
-.box{
+.goods{
     display: flex;
     width: 500px;
     height: 500px;
-
+    font-size: 30px;
+    color: crimson;
     border: 2px solid green;
     margin: 0 auto;
     margin-top: 100px;

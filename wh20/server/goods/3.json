@@ -1,10 +1,14 @@
 [
   {
-    "meat": "35$",
-    "fish": "12$",
+    "name": "meat", "price": "10$"
   },
   {
-    "meat": "35$",
-    "fish": "12$"
+    "name": "fish", "price": "23$"
+  },
+  {
+    "name": "meat", "price": "6$"
+  },
+  {
+    "name": "mandarin", "price": "13$"
   }
 ]

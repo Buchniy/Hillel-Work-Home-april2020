@@ -1,10 +1,14 @@
 [
   {
-    "orange": "12$",
-    "mandarin": "10$",
+    "name": "orange", "price": "10$"
   },
   {
-    "wine": "12$",
-    "tomat": "2$"
+    "name": "wine", "price": "23$"
+  },
+  {
+    "name": "tomat", "price": "6$"
+  },
+  {
+    "name": "mandarin", "price": "13$"
   }
 ]
