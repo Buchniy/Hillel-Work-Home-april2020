@@ -35,9 +35,9 @@ function click(event) {
                         console.log(userGoods);
                         // let box =  document.querySelector('.box');
                         // box.innerHTML = userGoods;
-                        let goods = userGoods;
+                        let goods = JSON.parse(userGoods);
                         console.log(goods, 'goods');
-////////////////////////////////
+// ////////////////////////////////
 //                         const markup = `<div class="goods">${goods.name}, ${goods.price}</div>`;
 //
 //                         console.log(markup, 'markup');
