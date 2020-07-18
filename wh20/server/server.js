@@ -26,28 +26,24 @@ app.post('/', function (req, res) {
 
     fs.readFile('./users.json', 'utf8', (err, dataJson) => {
         let data2 = JSON.parse(dataJson);
-        console.log('users.json', data2);
-
+        console.log('data2', data2);
         let currentUser = data2.some(data2 => data2.login === login && data2.password === password);
 
         if (currentUser) {
             let currentId = data2.filter(data2 => data2.login === login && data2.password === password)
-                .map(item => item.id);
+                                 .map(item => item.id);
             console.log('currentId', currentId);
             res.status(200).send(`${currentId}`);
         } else {
             res.status(401).send('Not found');
         }
-
     });
 });
 
 app.post('/id/', function (req, res) {
     let urlToJson = 'goods/' + `${JSON.parse(req.body)}` + '.json';
     fs.readFile(urlToJson, 'utf8', (err, goodsJson) => {
-
         let userGoods = goodsJson;
-        console.log('userGoods', userGoods);
         res.send(userGoods);
     })
 });

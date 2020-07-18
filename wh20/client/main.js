@@ -25,24 +25,16 @@ function click(event) {
             url: `http://localhost:3005/`,
             method: 'POST',
             data: requestPayload,
-            success(id) {
-                console.log('user id =', id);
+            success(id)
+            {
                 sendAjax({
                     url: `http://localhost:3005/id/`,
                     method: 'POST',
                     data: id,
                     success(userGoods) {
-                        console.log(userGoods);
-                        // let box =  document.querySelector('.box');
-                        // box.innerHTML = userGoods;
                         let goods = JSON.parse(userGoods);
-                        console.log(goods, 'goods');
-// ////////////////////////////////
-//                         const markup = `<div class="goods">${goods.name}, ${goods.price}</div>`;
-//
-//                         console.log(markup, 'markup');
-//                         document.body.innerHTML = markup;
-   ////////////////////////////////
+                        const box =  document.querySelector('.box');
+                        box.innerHTML = getMarkup(goods);
                     }
                 });
             }
@@ -63,6 +55,14 @@ function prepareForm(form) {
 
     return requestPayload;
 }
-
+function getMarkup(arr) {
+    return `<div class="goods">
+            ${
+                arr
+                    .map(good => `<div class="good ${good.isAvailability? 'ok': 'absent'}">${good.name} - ${good.price}</div>`)
+                    .join(' ')
+            }
+        </div> `;
+}
 
 

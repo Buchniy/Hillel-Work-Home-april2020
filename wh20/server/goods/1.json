@@ -1,14 +1,14 @@
 [
   {
-    "name": "orange", "price": "10$"
+    "name": "orange", "price": "10$", "isAvailability": true
   },
   {
-    "name": "wine", "price": "23$"
+    "name": "wine", "price": "23$", "isAvailability": false
   },
   {
-    "name": "tomat", "price": "6$"
+    "name": "tomat", "price": "6$", "isAvailability": true
   },
   {
-    "name": "mandarin", "price": "13$"
+    "name": "mandarin", "price": "13$", "isAvailability": true
   }
 ]

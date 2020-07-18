@@ -1,14 +1,14 @@
 [
   {
-    "name": "meat", "price": "10$"
+    "name": "meat", "price": "10$", "isAvailability": true
   },
   {
-    "name": "fish", "price": "23$"
+    "name": "fish", "price": "23$", "isAvailability": true
   },
   {
-    "name": "meat", "price": "6$"
+    "name": "meat", "price": "6$", "isAvailability": false
   },
   {
-    "name": "mandarin", "price": "13$"
+    "name": "mandarin", "price": "13$", "isAvailability": true
   }
 ]

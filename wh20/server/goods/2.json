@@ -1,14 +1,14 @@
 [
   {
-  "name": "apple", "price": "10$"
+  "name": "apple", "price": "10$", "isAvailability": true
   },
   {
-    "name": "strawberry", "price": "23$"
+    "name": "strawberry", "price": "23$", "isAvailability": true
   },
   {
-    "name": "cherry", "price": "6$"
+    "name": "cherry", "price": "6$", "isAvailability": true
   },
   {
-    "name": "watermelon", "price": "13$"
+    "name": "watermelon", "price": "13$", "isAvailability": false
   }
 ]
