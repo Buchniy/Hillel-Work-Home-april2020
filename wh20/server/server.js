@@ -37,10 +37,11 @@ app.post('/', function (req, res) {
         } else {
             res.status(401).send('Not found');
         }
+
     });
 });
 
-app.post('/id/', function (req, res) {
+app.post('/:id', function (req, res) {
     let urlToJson = 'goods/' + `${JSON.parse(req.body)}` + '.json';
     fs.readFile(urlToJson, 'utf8', (err, goodsJson) => {
         let userGoods = goodsJson;

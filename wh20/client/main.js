@@ -27,9 +27,9 @@ function click(event) {
             data: requestPayload,
             success(id){
 
-                if(!id) return;
+                if(id === 'Not found') return;
                 sendAjax({
-                    url: `http://localhost:3005/id/`,
+                    url: `http://localhost:3005/${id}`,
                     method: 'POST',
                     data: id,
                     success(userGoods) {
