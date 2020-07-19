@@ -25,8 +25,9 @@ function click(event) {
             url: `http://localhost:3005/`,
             method: 'POST',
             data: requestPayload,
-            success(id)
-            {
+            success(id){
+
+                if(!id) return;
                 sendAjax({
                     url: `http://localhost:3005/id/`,
                     method: 'POST',
