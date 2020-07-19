@@ -27,7 +27,7 @@ function click(event) {
             data: requestPayload,
             success(id){
 
-                if(id === 'Not found') return;
+                if(id === 'Not found') return clear() ;
                 sendAjax({
                     url: `http://localhost:3005/${id}`,
                     method: 'POST',
@@ -65,5 +65,8 @@ function getMarkup(arr) {
             }
         </div> `;
 }
-
+function clear() {
+    const box =  document.querySelector('.box');
+    box.innerHTML = "User Not found";
+}
 
