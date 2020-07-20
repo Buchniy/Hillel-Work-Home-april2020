@@ -44,7 +44,6 @@ const data = {
     onClick1() {
         console.log(this.bucketList1, 'bucketList1');
         let qqq = this.bucketList1.pop();
-        console.log(qqq, 'qqq');
         this.bucketList2.unshift(qqq)
     },
     onClick2() {
