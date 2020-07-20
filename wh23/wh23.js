@@ -41,10 +41,6 @@ const data = {
             text: 'Другое Дело6'
         }
     ],
-    // addMenuItem(){
-    //  bucketList.shift()
-    //
-    // },
     onClick1() {
         console.log(this.bucketList1, 'bucketList1');
         let qqq = this.bucketList1.pop();
@@ -54,21 +50,10 @@ const data = {
     onClick2() {
         console.log(this.bucketList2, 'bucketList2');
         let www = this.bucketList2.pop();
-        this.bucketList2.pop();
         this.bucketList1.unshift(www)
     }
 
 };
-
-
-
-//     onClick(value) {
-//         console.log(this.menuSecond, 'menuSecond');
-//     },
-//     data: {
-//         text: ''
-//     }
-// };
 
 const config = {
     el: '#app',
