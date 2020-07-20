@@ -8,28 +8,39 @@
 </head>
 <body>
 <style>
-    .error {
-        color: red;
+    li {
+        list-style-type: none;
+        width: 100%;
+        height: 30px;
+        border: 1px solid gray;
+        margin-bottom: 5px;
+        color: darkmagenta;
+        font-size: 20px;
     }
+    h1{
+        margin: 0 auto;
 
+    }
+    ul{
+        margin: 0 5px 0 5px;
+        padding: 0;
+    }
     .success {
         color: greenyellow;
     }
 
     body {
-        height: 50000px;
         display: flex;
-        fd
-
     }
     .box{
         display: inline-flex;
         justify-content: space-between;
         flex-direction: column;
         width: 200px;
-        height: 500px;
+        height: 600px;
         background: palegoldenrod;
         margin-left: 50px;
+        margin-top: 50px;
     }
     button{
     }
@@ -42,28 +53,28 @@
 </head>
 <body>
 <div id="app">
-<hr>
+
     <div class="box">
-        bucketList1
+        <h1>List 1</h1>
     <ul>
         <li v-for="job in bucketList1"
             v-bind="bucketList2.text">
             {{job.text}}
         </li>
     </ul>
-        <button @click="onClick1()">transfer</button>
+        <button @click="onClick1()" :disabled="bucketList1.length < 1">transfer</button>
     </div>
 
 
     <div class="box">
-        bucketList2
+        <h1>List 2</h1>
     <ul>
         <li v-for="job in bucketList2"
             v-bind="bucketList1.text">
             {{job.text}}
         </li>
     </ul>
-        <button @click="onClick2()">transfer</button>
+        <button @click="onClick2()" :disabled="bucketList2.length < 1">transfer</button>
     </div>
 
 
