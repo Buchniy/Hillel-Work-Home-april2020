@@ -4,25 +4,38 @@ window.onload = function(){
 
 
 let country = document.querySelector('#country');
+    const select = document.querySelector('select');
+    select.addEventListener('click', click);
 
 async function modernSendAjax() {
     const data = await fetch('http://localhost:3005/freez');
     const resp = await data.json();
     console.log(resp, 'res');
-    let test = countrySelection(resp);
-    console.log(test, 'countrySelection(resp)');
-    country.innerHTML = test;
+    country.innerHTML = countrySelection(resp);
+    .then()
 }
 
 modernSendAjax();
 
 
-function countrySelection(resp){
-    resp.forEach((item, index) =>console.log(resp[index], '<---country'));
-
-    // `${resp.forEach((item) =>`<!--<option>${item}</option>-->`)}`;
-
-    return `${resp.forEach((index) =>`<option>${resp[index]} </option>`)}`
+function countrySelection(resp) {
+    return `${resp.map(index => `<option value="${index}">${index} </option>`).join(' ')}`
+}
+    function click(event) {
+        // event.preventDefault();
+        if()
+        var a=document.querySelector('#country').value;
+        // const target = event.target;
+        console.log(a, 'a');
+    }
+    // function getMarkup(arr) {
+    //     return `<div class="goods">
+    //         ${
+    //         arr
+    //             .map(good => `<div class="good ${good.isAvailability? 'ok': 'absent'}">${good.name} - ${good.price}</div>`)
+    //             .join(' ')
+    //     }
+    //     </div> `;
 
     //
     // `<select size="1" id="country">
@@ -40,7 +53,7 @@ function countrySelection(resp){
     //                  </option>`) }
     //        ` ;
 
-}
+
 
 
 // const xhttp = new XMLHttpRequest();
