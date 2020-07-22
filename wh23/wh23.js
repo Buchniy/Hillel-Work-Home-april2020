@@ -41,17 +41,9 @@ const data = {
             text: 'Другое дело 6'
         }
     ],
-    onClick1() {
-        console.log(this.bucketList1, 'bucketList1');
-        let list1 = this.bucketList1.pop();
-        this.bucketList2.unshift(list1)
-    },
-    onClick2() {
-        console.log(this.bucketList2, 'bucketList2');
-        let list2 = this.bucketList2.pop();
-        this.bucketList1.unshift(list2)
+    onClick(List1, List2) {
+        List2.unshift(List1.pop());
     }
-
 };
 
 const config = {
@@ -60,4 +52,3 @@ const config = {
 };
 
 const vue = new Vue(config);
-

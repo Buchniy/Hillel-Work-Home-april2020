@@ -43,10 +43,12 @@
         margin-top: 50px;
     }
     button{
+        width: 100%;
+        height: 40px;
+        font-size: 20px;
     }
 
 </style>
-
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
@@ -56,25 +58,29 @@
 
     <div class="box">
         <h1>List 1</h1>
-    <ul>
-        <li v-for="job in bucketList1"
-            v-bind="bucketList2.text">
-            {{job.text}}
-        </li>
-    </ul>
-        <button @click="onClick1()" :disabled="bucketList1.length < 1">transfer</button>
+        <ul>
+            <li v-for="job in bucketList1"
+                v-bind="bucketList2.text">
+                {{job.text}}
+            </li>
+        </ul>
+        <button @click="onClick(bucketList1, bucketList2)" :disabled="bucketList1.length < 1">
+            transfer to list 2
+        </button>
     </div>
 
 
     <div class="box">
         <h1>List 2</h1>
-    <ul>
-        <li v-for="job in bucketList2"
-            v-bind="bucketList1.text">
-            {{job.text}}
-        </li>
-    </ul>
-        <button @click="onClick2()" :disabled="bucketList2.length < 1">transfer</button>
+        <ul>
+            <li v-for="job in bucketList2"
+                v-bind="bucketList1.text">
+                {{job.text}}
+            </li>
+        </ul>
+        <button @click="onClick(bucketList2, bucketList1)" :disabled="bucketList2.length < 1">
+            transfer to list 1
+        </button>
     </div>
 
 
