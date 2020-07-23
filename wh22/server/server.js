@@ -21,7 +21,7 @@ app.listen(port, function () { // говорим на каком порту за
     console.log(`Example app listening on port http://localhost:${port}/`);
 });
 /*-----------------------------*/
-app.get('/freez', function (req, res) {
+app.get('/', function (req, res) {
 
     console.log('kuku1');
     fs.readFile('./list1.json', 'utf8', (err, dataJson) => {
@@ -32,7 +32,15 @@ app.get('/freez', function (req, res) {
 
     })
 });
+app.get('/:newVar', function (req, res) {
 
+    fs.readFile('./list2.json', 'utf8', (err, cityJson) => {
+        let City = JSON.parse(cityJson);
+        console.log('City', City);
+        res.status(200).send(City);
+
+    })
+});
 // app.post('/:id', function (req, res) {
 //     let urlToJson = 'goods/' + `${JSON.parse(req.body)}` + '.json';
 //     fs.readFile(urlToJson, 'utf8', (err, goodsJson) => {
