@@ -16,6 +16,7 @@ async function modernSendAjax() {
     selectionCountry();
     console.log(this.value, 'this.value');
 
+    
     const data2 = await fetch(`http://localhost:3005/city`);
     const respCity = await data2.json();
     console.log(respCity, 'respCity');
