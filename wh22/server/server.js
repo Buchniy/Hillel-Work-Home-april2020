@@ -24,7 +24,7 @@ app.listen(port, function () { // говорим на каком порту за
 app.get('/', function (req, res) {
 
     console.log('kuku1');
-    fs.readFile('./list1.json', 'utf8', (err, dataJson) => {
+    fs.readFile('country/list1.json', 'utf8', (err, dataJson) => {
         let data = JSON.parse(dataJson);
         console.log('kuku2');
         console.log('dataJson', data);
@@ -32,15 +32,36 @@ app.get('/', function (req, res) {
 
     })
 });
-app.get('/:newVar', function (req, res) {
+app.get('/:val', function (req, res) {
+    let {street} = req.query;
 
-    fs.readFile('./list2.json', 'utf8', (err, cityJson) => {
+    console.log('req.query', req.query );
+    let urlToJson = 'city/' + `${street}` + '.json';
+    console.log('urlToJson', urlToJson );
+    fs.readFile(urlToJson , 'utf8', (err, cityJson) => {
+        let City = JSON.parse(cityJson);
+
+        res.status(200).send(City);
+
+    })
+});
+
+app.get('/street/:str', function (req, res) {
+    let {str} = req.query;
+    console.log('kuku3');
+    console.log('{str}--> ', {str} );
+
+    let urlToStreet = `street/${str}.json`;
+    console.log('urlToStreet', urlToStreet );
+    fs.readFile(urlToStreet , 'utf8', (err, cityJson) => {
         let City = JSON.parse(cityJson);
         console.log('City', City);
         res.status(200).send(City);
 
     })
 });
+
+
 // app.post('/:id', function (req, res) {
 //     let urlToJson = 'goods/' + `${JSON.parse(req.body)}` + '.json';
 //     fs.readFile(urlToJson, 'utf8', (err, goodsJson) => {
