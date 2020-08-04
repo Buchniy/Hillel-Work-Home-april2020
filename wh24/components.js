@@ -49,14 +49,14 @@ Vue.component('navigation-item', {
             class="navigation-item"
             >{{navTitle}}</button>
     `
-})
+});
 
 Vue.component('selected-page', {
     props: ['pageTitle'],
     template: `
         <div>Selected ->> {{pageTitle}}</div>
     `
-})
+});
 
 const vue = new Vue({
     el: '#app',
