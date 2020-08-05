@@ -81,44 +81,54 @@ Vue.component('Diagram', {
     <div class="parent-box">
     <diagram-column 
         
-        :column="item"
+        :currentColumn="item"
         v-for="item in diagramItems" />
     </div>        
     `
 });
 //----------------------------------------///
 Vue.component('diagram-column', {
-    props: ['column'],
+    props: ['currentColumn'],
     data() {
         return {
-
+            valueHeight:''
         }
     },
     methods: {
-
-
+        changeValueHeight(value){
+            this.valueHeight = value;
+        }
     },
     template: `
         <div class="box" >
-            <div class="color-box" :style="{background: column.color, height: '250px'}"></div>
-            <div>{{column.name}}</div>
-            <regulator />
+            <div class="color-box" :style="{background: currentColumn.color, height: valueHeight + 'px'}"></div>
+            <div>{{currentColumn.name}}</div>
+            <regulator :valueRange="currentColumn" @changeValue="changeValueHeight"/>
         </div>
     `
 });
 //=============================================//
 Vue.component('regulator', {
-    // props: ['regul'],
+    props: ['valueRange'],
     data() {
         return {
-
+            value: 0,
         }
     },
     methods: {
+        onClick(event){
+            this.$emit('changeValue', this.value);
+            console.log('this.value', this.value)
+
+        }
 
     },
     template: `
-     <input type="range" >
+        <div>
+            <input type="range" v-model="value" @input="onClick"  max="200">
+            <hr>
+            {{this.value}}
+        </div>
     `
 });
 
