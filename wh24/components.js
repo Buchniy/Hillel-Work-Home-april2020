@@ -100,7 +100,7 @@ Vue.component('diagram-column', {
     },
     template: `
         <div class="box" >
-            <div class="" :style="{background: column.color, height: '100px'}"></div>
+            <div class="color-box" :style="{background: column.color, height: '250px'}"></div>
             <div>{{column.name}}</div>
             <regulator />
         </div>
@@ -118,8 +118,7 @@ Vue.component('regulator', {
 
     },
     template: `
-     <input type="range">
-<!--        <div :style="{background: column.color} ">{{column.name}}</div>-->
+     <input type="range" >
     `
 });
 
