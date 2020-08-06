@@ -13,6 +13,7 @@ Vue.component('Diagram', {
                 ]
         }
     },
+
     methods: {},
     template: `
 <div>
