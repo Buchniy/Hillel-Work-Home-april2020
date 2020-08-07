@@ -18,18 +18,15 @@ Vue.component('Diagram', {
     template: `
 <div>
     <div class="parent-box">
-
-    <diagram-column 
-        :currentColumn="item"
-        v-for="item in diagramItems" />
-  
+        <diagram-column 
+            :currentColumn="item"
+            v-for="item in diagramItems" /> 
     </div> 
-    <assort />
 </div>
     
     `
 });
-//------------------column----------------------//
+
 Vue.component('diagram-column', {
     props: ['currentColumn'],
     data() {
@@ -38,7 +35,7 @@ Vue.component('diagram-column', {
         }
     },
     mounted() {
-        this.valueHeight = localStorage.getItem(this.currentColumn.name)
+        this.valueHeight = localStorage.getItem(this.currentColumn.name);
         console.log(this.currentColumn.name, this.valueHeight);
     },
     methods: {
@@ -54,7 +51,7 @@ Vue.component('diagram-column', {
         </div>
     `
 });
-//------------------regulator----------------------//
+
 Vue.component('regulator', {
     props: ['valueRange'],
     data() {
@@ -86,30 +83,7 @@ Vue.component('regulator', {
     `
 });
 
-//------------------assort ----------------------//
-Vue.component('assort', {
-    props: ['valueFilter'],
-    data() {
-        return {
 
-        }
-    },
-    mounted() {
-
-    },
-    methods: {
-onClick(event) {
-    // console.log(this.valueFilter, 'valueFilter');
-}
-    },
-    template: `
-        <div class="assort">
-            <button @click="onClick" class="btn">filter</button>
-        </div>
-    `
-});
-
-// //----------------------------------------//
 const vue = new Vue({
     el: '#app',
     data: {}
