@@ -48,6 +48,7 @@ async function startSendAjax() {
     city.addEventListener("change", streetAjax);
 
 
-
+Promise.all([startSendAjax, nextAjax, streetAjax]).then((values)=>
+    console.log(values, 'values'));
 
 };
