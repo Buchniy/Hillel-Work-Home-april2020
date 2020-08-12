@@ -3,60 +3,31 @@ Vue.component('Diagram', {
         return {
             diagramItems:
                 [
-                    {'name': 'col-1', 'color': 'red', 'heigh': ''},
-                    {'name': 'col-2', 'color': 'lightblue', 'heigh': ''},
-                    {'name': 'col-3', 'color': 'yellow', 'heigh': ''},
-                    {'name': 'col-4', 'color': 'lightgreen', 'heigh': ''},
-                    {'name': 'col-5', 'color': 'fuchsia', 'heigh': ''},
-                    {'name': 'col-6', 'color': 'darkgrey', 'heigh': ''},
-                    {'name': 'col-7', 'color': 'pink', 'heigh': ''}
+                    {'name': 'col-1', 'color': 'red'},
+                    {'name': 'col-2', 'color': 'lightblue'},
+                    {'name': 'col-3', 'color': 'yellow'},
+                    {'name': 'col-4', 'color': 'lightgreen'},
+                    {'name': 'col-5', 'color': 'fuchsia'},
+                    {'name': 'col-6', 'color': 'darkgrey'},
+                    {'name': 'col-7', 'color': 'pink'}
                 ]
         }
     },
 
-    methods: {
-        newArr(heigh, name, item){
-            console.log('height, name', heigh, name, item);
-            // console.log('this.diagramItems',this.diagramItems.heigh);
+    methods: {},
 
-
-            // newDiagramItems = this.diagramItems;
-
-            // this.diagramItems.sort(function (a, b) {
-            //     return a.height - b.height
-            // });
-        },
-        change(a){
-            console.log('kuku', a);
-            // let newDiagramItems = this.diagramItems.sort(function (a, b) {
-            //     return a.heigh - b.heigh
-            // });
-            // console.log('diagramItems',  this.diagramItems.sort(function (a, b) {
-            //     return a.heigh - b.heigh
-            // }) );
-            // console.log(newDiagramItems, 'newDiagramItems');
-        }
-    },
     template: `
-<div>
-    <div class="parent-box">
-    
-        <diagram-column 
-            :currentColumn="item"
+        <div>
+            <div class="parent-box">
             
-            @changeMass="change"
-
-            @newValue="newArr"
-            v-for="item in diagramItems" /> 
-    </div> 
-    <hr>
-<assort />
-</div>
-
-    
+                <diagram-column 
+                    :currentColumn="item"
+                    v-for="item in diagramItems" /> 
+            </div> 
+        </div>  
     `
 });
-//-----------------------------------------///
+
 Vue.component('diagram-column', {
     props: ['currentColumn'],
     data() {
@@ -66,21 +37,10 @@ Vue.component('diagram-column', {
     },
     mounted() {
         this.valueHeight = localStorage.getItem(this.currentColumn.name);
-
-
-        this.currentColumn.heigh = this.valueHeight;
-
-        // console.log(this.currentColumn.name, this.currentColumn.heigh, this.currentColumn);
-
     },
     methods: {
         changeValueHeight(currentValue) {
             this.valueHeight = currentValue;
-
-
-            // this.currentColumn.heigh = this.valueHeight;
-            this.$emit('newValue', currentValue, this.currentColumn.name, this.currentColumn);
-            console.log(currentValue, this.currentColumn.name,  'diagram-column');
         }
     },
     template: `
@@ -92,7 +52,6 @@ Vue.component('diagram-column', {
         </div>
     `
 });
-//-----------------------------------------///
 Vue.component('regulator', {
     props: ['valueRange'],
     data() {
@@ -113,7 +72,6 @@ Vue.component('regulator', {
         onClick(event) {
             this.$emit('changeValue', this.value);
             localStorage.setItem(this.valueRange, this.value);
-            console.log(this.valueRange, this.value, 'regulator');
         }
     },
     template: `
@@ -124,32 +82,8 @@ Vue.component('regulator', {
         </div>
     `
 });
-//-----------------------------------------///
-Vue.component('assort', {
-    props: [],
-    data() {
-        return {
-
-        }
-    },
-    mounted() {
 
 
-    },
-    methods: {
-        assort(){
-            console.log('arr');
-            this.$emit('changeMass', 1);
-
-        }
-    },
-    template: `
-        <div>
-            <button class="btn" @click="assort">filter</button>
-        </div>
-    `
-});
-//-----------------------------------------///
 const vue = new Vue({
     el: '#app',
     data: {}
