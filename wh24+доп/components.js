@@ -3,38 +3,28 @@ Vue.component('Diagram', {
         return {
             diagramItems:
                 [
-                    {'name': 'col-1', 'color': 'red', 'heigh': ''},
-                    {'name': 'col-2', 'color': 'lightblue', 'heigh': ''},
-                    {'name': 'col-3', 'color': 'yellow', 'heigh': ''},
-                    {'name': 'col-4', 'color': 'lightgreen', 'heigh': ''},
-                    {'name': 'col-5', 'color': 'fuchsia', 'heigh': ''},
-                    {'name': 'col-6', 'color': 'darkgrey', 'heigh': ''},
-                    {'name': 'col-7', 'color': 'pink', 'heigh': ''}
+                    {'name': 'col-1', 'color': 'red'},
+                    {'name': 'col-2', 'color': 'lightblue'},
+                    {'name': 'col-3', 'color': 'yellow'},
+                    {'name': 'col-4', 'color': 'lightgreen'},
+                    {'name': 'col-5', 'color': 'fuchsia'},
+                    {'name': 'col-6', 'color': 'darkgrey'},
+                    {'name': 'col-7', 'color': 'pink'}
                 ]
         }
     },
 
     methods: {
-        newArr(heigh, name, item){
-            console.log('height, name', heigh, name, item);
-            // console.log('this.diagramItems',this.diagramItems.heigh);
+        change(){
+            console.log('kuku');
+            this.diagramItems.sort(function (a, b) {
 
+                return a.heigh - b.heigh
+            });
 
-            // newDiagramItems = this.diagramItems;
+            console.log('diagramItems',  this.diagramItems);
 
-            // this.diagramItems.sort(function (a, b) {
-            //     return a.height - b.height
-            // });
-        },
-        change(a){
-            console.log('kuku', a);
-            // let newDiagramItems = this.diagramItems.sort(function (a, b) {
-            //     return a.heigh - b.heigh
-            // });
-            // console.log('diagramItems',  this.diagramItems.sort(function (a, b) {
-            //     return a.heigh - b.heigh
-            // }) );
-            // console.log(newDiagramItems, 'newDiagramItems');
+            // isShow: true;
         }
     },
     template: `
@@ -43,14 +33,13 @@ Vue.component('Diagram', {
     
         <diagram-column 
             :currentColumn="item"
-            
-            @changeMass="change"
 
-            @newValue="newArr"
             v-for="item in diagramItems" /> 
+
     </div> 
+
     <hr>
-<assort />
+<assort @changeMass="change" />
 </div>
 
     
@@ -70,7 +59,7 @@ Vue.component('diagram-column', {
 
         this.currentColumn.heigh = this.valueHeight;
 
-        // console.log(this.currentColumn.name, this.currentColumn.heigh, this.currentColumn);
+        console.log('this.currentColumn.heigh', this.currentColumn.heigh);
 
     },
     methods: {
@@ -78,7 +67,7 @@ Vue.component('diagram-column', {
             this.valueHeight = currentValue;
 
 
-            // this.currentColumn.heigh = this.valueHeight;
+            this.currentColumn.heigh = this.valueHeight;
             this.$emit('newValue', currentValue, this.currentColumn.name, this.currentColumn);
             console.log(currentValue, this.currentColumn.name,  'diagram-column');
         }
@@ -86,7 +75,7 @@ Vue.component('diagram-column', {
     template: `
         <div class="box" >
             <div class="color-box" :style="{background: currentColumn.color, height: valueHeight + 'px'}"></div>
-            <div>{{currentColumn.name}}</div>
+            <div>{{currentColumn.name}} : {{currentColumn.heigh}}</div>
             <regulator :valueRange="currentColumn.name" 
                 @changeValue="changeValueHeight"/>
         </div>
@@ -138,8 +127,8 @@ Vue.component('assort', {
     },
     methods: {
         assort(){
-            console.log('arr');
-            this.$emit('changeMass', 1);
+            // console.log('arr');
+            this.$emit('changeMass');
 
         }
     },
