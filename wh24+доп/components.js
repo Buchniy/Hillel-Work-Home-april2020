@@ -14,17 +14,25 @@ Vue.component('Diagram', {
         }
     },
 
-    methods: {
-        change(){
-            console.log('kuku');
-            this.diagramItems.sort(function (a, b) {
+  //   mounted() {
+  //       this.diagramItems[0].height = localStorage.getItem(this.diagramItems);
+  // console.log('localStorage', localStorage);
+  //
+  //   }
+  //   ,
 
-                return a.heigh - b.heigh
+    methods: {
+        currentValue(curHeigh, curName, curObj){
+            console.log('curHeigh, curName, curObj', curHeigh, curName, curObj);
+        },
+        change(){
+            this.diagramItems.sort(function (a, b) {
+                return a.height - b.height
             });
 
             console.log('diagramItems',  this.diagramItems);
+            console.log('diagramItems',  this.diagramItems[0].height);
 
-            // isShow: true;
         }
     },
     template: `
@@ -33,16 +41,18 @@ Vue.component('Diagram', {
     
         <diagram-column 
             :currentColumn="item"
+            
+            @newValue="currentValue"
 
             v-for="item in diagramItems" /> 
 
     </div> 
 
     <hr>
-<assort @changeMass="change" />
-</div>
-
-    
+        <assort 
+  
+        @changeMass="change" />
+    </div>   
     `
 });
 //-----------------------------------------///
@@ -57,33 +67,39 @@ Vue.component('diagram-column', {
         this.valueHeight = localStorage.getItem(this.currentColumn.name);
 
 
-        this.currentColumn.heigh = this.valueHeight;
+        this.currentColumn.height = this.valueHeight;
 
-        console.log('this.currentColumn.heigh', this.currentColumn.heigh);
+        // console.log('this.currentColumn.heigh', this.currentColumn.heigh);
 
     },
     methods: {
         changeValueHeight(currentValue) {
-            this.valueHeight = currentValue;
+            this.valueHeight = currentValue ;
+            this.currentColumn.height = this.valueHeight;
+            console.log(currentValue, this.valueHeight, this.currentColumn.height, 'currentValue, this.valueHeight, this.currentColumn.heigh' );
 
-
-            this.currentColumn.heigh = this.valueHeight;
             this.$emit('newValue', currentValue, this.currentColumn.name, this.currentColumn);
-            console.log(currentValue, this.currentColumn.name,  'diagram-column');
+
+
+            console.log(currentValue, this.currentColumn.name, this.currentColumn,  'diagram-column');
+            console.log('this.valueHeight', this.valueHeight, this.currentColumn);
         }
     },
     template: `
         <div class="box" >
-            <div class="color-box" :style="{background: currentColumn.color, height: valueHeight + 'px'}"></div>
-            <div>{{currentColumn.name}} : {{currentColumn.heigh}}</div>
-            <regulator :valueRange="currentColumn.name" 
+            <div class="color-box" :style="{background: currentColumn.color, height: valueHeight + 'px'}">
+            </div>
+            <div>{{currentColumn.name}} : {{currentColumn.height}}</div>
+            <regulator 
+            :valueHei="currentColumn.height"
+            :valueRange="currentColumn.name" 
                 @changeValue="changeValueHeight"/>
         </div>
     `
 });
 //-----------------------------------------///
 Vue.component('regulator', {
-    props: ['valueRange'],
+    props: ['valueRange', 'valueHei'],
     data() {
         return {
             value: 0,
@@ -98,8 +114,10 @@ Vue.component('regulator', {
             this.value = 0;
         }
     },
+
     methods: {
         onClick(event) {
+
             this.$emit('changeValue', this.value);
             localStorage.setItem(this.valueRange, this.value);
             console.log(this.valueRange, this.value, 'regulator');
@@ -109,13 +127,14 @@ Vue.component('regulator', {
         <div>
             <input type="range" v-model="value" @input="onClick"  max="200">
             <hr>
-            {{this.value}}
+            {{valueHei}} -- 
+            {{value}}
         </div>
     `
 });
 //-----------------------------------------///
 Vue.component('assort', {
-    props: [],
+
     data() {
         return {
 
