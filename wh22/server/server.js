@@ -40,7 +40,7 @@ app.get('/:val', function (req, res) {
     console.log('urlToJson', urlToJson );
     fs.readFile(urlToJson , 'utf8', (err, cityJson) => {
         let City = JSON.parse(cityJson);
-
+        console.log('uCity', City);
         res.status(200).send(City);
 
     })
