@@ -25,9 +25,9 @@ async function startSendAjax() {
     async function streetAjax(event){
              let str = event.target.value;
              console.log(str, 'city');
-             const secondRequest = axios.get(`http://localhost:3005/${str}/?street=${str}`)
-                     // .then(response=>street.innerHTML = countrySelection(response.data))
-    .then(response=>console.log(response, 'response.data'));
+             const secondRequest = axios.get(`http://localhost:3005/street/${str}/?str=${str}`)
+                     .then(response=>street.innerHTML = countrySelection(response.data));
+    // .then(response=>console.log(response, 'response.data'));
         return secondRequest
             }
 
