@@ -9,7 +9,7 @@
         <div class="login-form__password">
             <label for="">
                 Paswword
-                <input type="text" name="paswword" v-model="credentials.password>
+                <input type="text" name="paswword" v-model="credentials.password">
             </label>
         </div>
         <div class="login-form__button-group">
@@ -32,10 +32,14 @@ import { mapActions } from 'vuex'
         },
         methods: {
             ...mapActions(['asyncSignIn']),
-            onSignIn() {
+           async onSignIn() {
                 const { login, password } = this.credentials;
+
                 if (login && password) {
-                    this.asyncSignIn(this.credentials);
+                    const  isAuthorized = await this.asyncSignIn(this.credentials);
+                    if(isAuthorized){
+                        this.$router.push('/dashboard')
+                    }
 
                 }
                 // this.$router.push('/dashboard')

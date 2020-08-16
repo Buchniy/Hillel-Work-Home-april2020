@@ -26,4 +26,17 @@ const router = new VueRouter({
   routes
 })
 
+// to - куда идем
+// from -- откуда
+// next()
+router.beforeEach((to, from, next) => {
+    const isAuth = store.getters['GET_IS_AUTH'];
+
+    if(!isAuth && to.name.toLowerCase() != 'auth') {
+        router.push('/');
+    } else {
+        next();
+    }
+})
+
 export default router

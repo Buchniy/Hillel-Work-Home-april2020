@@ -21,14 +21,27 @@ app.listen(port, function () { // говорим на каком порту за
     console.log(`Example app listening on port http://localhost:${port}/`);
 });
 /*-----------------------------*/
-app.get('/', function (req, res) {
+app.get('/sign-in', function (req, res) {
 
+    readFile('./models/auth.json', (json) => {
+        const data = JSON.parse(json);
+        const status = data.isAuthorized ? 200 : 401;
+        console.log(json, 'json');
+        console.log(status, 'status');
+        console.log(data, 'data');
 
-        console.log('dataJson');
-        res.status(200).send();
+        res
+            .status(status)
+            .send(data)
 
-
+    })
 });
+
+function readFile(path, callback) {
+    fs.readFile(path, 'utf-8', (error, data) => {
+        callback(data);
+    })
+}
 
 
 
