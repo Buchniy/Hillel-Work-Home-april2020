@@ -15,7 +15,10 @@ async function startSendAjax() {
 async function nextAjax(event) {
         let val = event.target.value;
         console.log(val, 'country');
-
+    currentResult(val);
+    // const result = {};
+    // result.country = val;
+    // console.log(result, 'result');
     return await axios.get(`http://localhost:3005/${val}/?street=${val}`)
             .then(response => city.innerHTML = countrySelection(response.data))
             .catch(function (error) {console.log(error);});
@@ -25,7 +28,10 @@ async function nextAjax(event) {
 async function streetAjax(event){
         let str = event.target.value;
         console.log(str, 'city');
-
+    currentResult(str);
+    // const result = {};
+    // result.city = str;
+    // console.log(result, 'result');
     return  await axios.get(`http://localhost:3005/street/${str}/?str=${str}`)
             .then(response=>street.innerHTML = countrySelection(response.data))
             .catch(function (error) {console.log(error); });
@@ -34,27 +40,37 @@ async function streetAjax(event){
 function currentTarget(event) {
        let currentTarget = event.target.value;
        console.log(currentTarget, 'street');
+    currentResult(currentTarget);
        return currentTarget
 }
+//----------------------------------//
+    function currentResult(a) {
+        const result = {};
+        result.key = a;
+        console.log(result, 'result');
+    }
 //----------------------------------//
 function countrySelection(resp) {
     return `${resp.map(index => `<option  value="${index}">${index} </option>`).join(' ')}`
  }
 //----------------------------------//
-startSendAjax();
-// country.addEventListener("change", nextAjax);
-// city.addEventListener("change", streetAjax);
-// street.addEventListener("change", currentTarget);
-//----------------------------------//
-Promise.all(
-   [
 
-            country.addEventListener("change", nextAjax),
-          city.addEventListener("change", streetAjax),
-           street.addEventListener("change", currentTarget)
-   ])
-           .then(results=> console.log(results, 'results'))
-           .catch(function (error) {console.log(error)});
+startSendAjax();
+country.addEventListener("change", nextAjax);
+city.addEventListener("change", streetAjax);
+street.addEventListener("change", currentTarget);
+    const result = {};
+    console.log(result, 'result');
+//----------------------------------//
+// Promise.all(
+//    [
+//
+//             country.addEventListener("change", nextAjax),
+//           city.addEventListener("change", streetAjax),
+//            street.addEventListener("change", currentTarget)
+//    ])
+//            .then(results=> console.log(results, 'results'))
+//            .catch(function (error) {console.log(error)});
 
 };
 
